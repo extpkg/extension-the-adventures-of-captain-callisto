@@ -47,7 +47,7 @@ ext.runtime.onExtensionClick.addListener(async () => {
       // icon_dark: "./assets/128-dark.png",
     });
 
-    const { os } = await ext.runtime.getPlatformInfo();
+    // const { os } = await ext.runtime.getPlatformInfo();
 
     window = await ext.windows.create({
       center: true,
@@ -56,11 +56,12 @@ ext.runtime.onExtensionClick.addListener(async () => {
       title,
       // icon: isDarkMode ? "./assets/128.png" : "./assets/128-dark.png",
       vibrancy: false,
-      frame: os !== "mac",
-      titleBarStyle: os === "mac" ? "inset" : undefined,
+      frame: true,
+      // frame: os !== "mac",
+      // titleBarStyle: os === "mac" ? "inset" : undefined,
       width: 960,
-      height: 600,
-      aspectRatio: 960 / 600,
+      height: 540,
+      aspectRatio: 1920 / 1080,
     });
 
     const contentSize = await ext.windows.getContentSize(window.id);
