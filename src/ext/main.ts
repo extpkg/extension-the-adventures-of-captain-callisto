@@ -60,7 +60,7 @@ ext.runtime.onExtensionClick.addListener(async () => {
       // frame: os !== "mac",
       // titleBarStyle: os === "mac" ? "inset" : undefined,
       width: 960,
-      height: 540,
+      height: 570, // 540 without frame, 570 with frame to fit the game
       aspectRatio: 1920 / 1080,
     });
 
