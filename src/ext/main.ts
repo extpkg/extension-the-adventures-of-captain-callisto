@@ -51,16 +51,13 @@ ext.runtime.onExtensionClick.addListener(async () => {
 
     window = await ext.windows.create({
       center: true,
-      // darkMode: isDarkMode,
-      fullscreenable: false,
+      fullscreenable: true,
       title,
-      // icon: isDarkMode ? "./assets/128.png" : "./assets/128-dark.png",
       vibrancy: false,
-      frame: true,
-      // frame: os !== "mac",
-      // titleBarStyle: os === "mac" ? "inset" : undefined,
+      frame: false,
+      titleBarStyle: "inset",
       width: 960,
-      height: 570, // 540 without frame, 570 with frame to fit the game
+      height: 540, // 540 without frame, 570 with frame to fit the game
       aspectRatio: 1920 / 1080,
     });
 
