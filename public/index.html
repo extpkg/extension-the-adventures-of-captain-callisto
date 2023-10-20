@@ -4287,13 +4287,13 @@
         drawShadowText(
           "\u2b50 " + coins + " / " + availableCoins,
           20,
-          IS_FULLSCREEN ? 20 : 80,
+          IS_FULLSCREEN || OS !== 'mac' ? 20 : 80,
           OVERLAY_YELLOW,
         );
         drawShadowText(
           "\ud83d\ude80 " + player.fuel.toFixed(0) + "%",
           20,
-          IS_FULLSCREEN ? 100 : 160,
+          IS_FULLSCREEN || OS !== 'mac' ? 100 : 160,
         );
         setTextAlign(ALIGN_RIGHT);
         drawShadowText(
