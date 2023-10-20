@@ -1141,6 +1141,22 @@
       const ALIGN_LEFT = "left";
       const ALIGN_CENTER = "center";
       const ALIGN_RIGHT = "right";
+      let IS_FULLSCREEN = false;
+      let OS = "";
+
+      (async () => {
+        const webview = await ext.webviews.getCurrent();
+        const window = await ext.webviews.getAttachedWindow(webview.id);
+        IS_FULLSCREEN = await ext.windows.isFullscreen(window.id);
+      })();
+
+      ext.windows.onEnteredFullscreen.addListener(() => {
+        IS_FULLSCREEN = true;
+      });
+      ext.windows.onExitedFullscreen.addListener(() => {
+        IS_FULLSCREEN = false;
+      });
+
       function drawText(str, x, y, fillColor = OVERLAY_BLACK) {
         overlayCtx.fillStyle = fillColor;
         overlayCtx.fillText(str, x, y);
@@ -4268,16 +4284,24 @@
         }
         setFontSize(48);
         setTextAlign(ALIGN_LEFT);
-        // TODO: shift ui in fullscreen
         drawShadowText(
           "\u2b50 " + coins + " / " + availableCoins,
           20,
-          80,
+          IS_FULLSCREEN ? 20 : 80,
           OVERLAY_YELLOW,
         );
-        drawShadowText("\ud83d\ude80 " + player.fuel.toFixed(0) + "%", 20, 160);
+        drawShadowText(
+          "\ud83d\ude80 " + player.fuel.toFixed(0) + "%",
+          20,
+          IS_FULLSCREEN ? 100 : 160,
+        );
         setTextAlign(ALIGN_RIGHT);
-        drawShadowText(gameTime.toFixed(1), WIDTH - 20, 20, OVERLAY_LIGHT_GRAY);
+        drawShadowText(
+          gameTime.toFixed(1),
+          WIDTH - 20,
+          OS !== "mac" ? 80 : 20,
+          OVERLAY_LIGHT_GRAY,
+        );
         setFontSize(24);
         setTextAlign(ALIGN_CENTER);
         drawKeyIcon("W", WIDTH - 445, HEIGHT - 370);
@@ -5313,6 +5337,19 @@
       }
       const bestTimesStr = localStorage["callisto-times"];
       const bestTimes = bestTimesStr ? JSON.parse(bestTimesStr) : [];
+    </script>
+
+    <script type="module">
+      const platformInfo = await ext.runtime.getPlatformInfo();
+      const webview = await ext.webviews.getCurrent();
+      const window = await ext.webviews.getAttachedWindow(webview.id);
+      const insetSize = await ext.windows.getInsetSize(window.id);
+
+      OS = platformInfo.os;
+
+      if (platformInfo.os !== "mac" && insetSize) {
+        document.getElementById("frame").style.right = insetSize.width;
+      }
     </script>
   </body>
 </html>
