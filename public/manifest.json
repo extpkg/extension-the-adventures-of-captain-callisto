@@ -3,7 +3,7 @@
   "name": "The Adventures of Captain Callisto",
   "short_name": "Captain Callisto",
   "description": "Join Captain Callisto's mysterious voyage through unknown cosmic territories.",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "author": "EXT, Inc.",
   "icons": {
     "128": "./assets/128.png",

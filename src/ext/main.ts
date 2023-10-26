@@ -47,6 +47,7 @@ ext.runtime.onExtensionClick.addListener(async () => {
     window = await ext.windows.create({
       center: true,
       fullscreenable: true,
+      maximizable: false,
       title,
       vibrancy: false,
       frame: false,

@@ -1,6 +1,6 @@
 {
   "name": "extension-the-adventures-of-captain-callisto",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Join Captain Callisto's mysterious voyage through unknown cosmic territories.",
   "type": "module",
   "scripts": {
