@@ -13,3 +13,6 @@ Join Captain Callisto's mysterious voyage through unknown cosmic territories.
 
 Run `npm run dev` to watch `src` and `public` directories and rebuild the
 project on changes
+
+## Source
+https://github.com/codyebberson/js13k-callisto
